@@ -4,12 +4,22 @@
 
 class Image {
 public:
-	Image(uint16_t rows, uint16_t columns): m_rows(rows), m_columns(columns) {
+	Image(uint16_t rows, uint16_t columns) : m_rows(rows), m_columns(columns) {
 		pixels = new uint8_t[m_rows * m_columns];
 	}
 	~Image() {
 		std::cout << "freeing pixel memory.\n";
 		delete[] pixels;
+	}
+
+	bool ValidateImage()
+	{
+		if (m_columns <= 1024 && m_rows <= 1024) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 	const uint16_t m_rows;
 	const uint16_t m_columns;
